@@ -3,6 +3,18 @@ import java.util.Scanner;
 public class testClass {
 
     public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder("flower");
+        sb.append("boom");
+        System.out.println(sb.toString());
+        sb.insert(6,"big");
+        System.out.println(sb.toString());
+        sb.reverse();
+        System.out.println(sb.toString());
+        sb.delete(4,7);
+        System.out.println(sb.toString());
+    }
+
+    public static void main3(String[] args) {
 
         String a = new String("abc");
         String b = new String("cbc");
