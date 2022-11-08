@@ -1,8 +1,115 @@
 import java.util.Scanner;
+class UserName extends Exception{
+    public UserName(String msg){
+        super(msg);
+    }
+}
 
+class PassWord extends RuntimeException{
+    public PassWord(String msg){
+        super(msg);
+    }
+}
+class A {
+    A(){
+        System.out.println("A");
+    }
+}
 public class testClass {
 
+    String string = new String("666");
+    public void change(String str){
+        str = "66";
+    }
     public static void main(String[] args) {
+       testClass testClass = new testClass();
+       testClass.change(testClass.string);
+        System.out.println(testClass.string);
+    }
+
+    public static void main9(String[] args) {
+        int[] nums = {-1,0,3,4,6,10,13,14};
+        System.out.println( search(nums,13));;
+    }
+    public static int search(int[] nums, int target) {
+        // write code here
+        int left = 0;
+        int right = nums.length-1;
+        int mid = (left+right)/2;
+        while(left <= right){
+            if(target > nums[mid]){
+                left = mid + 1;
+                mid = (left+right)/2;
+            }
+            if(target < nums[mid]){
+                right = mid - 1;
+                mid = (left+right)/2;
+            }
+            if(target == nums[mid])
+                return mid;
+        }
+        return -1;
+    }
+    public static String username = "666";
+    public static String password = "123456";
+
+    public static void main8(String[] args) throws UserName {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入用户名：");
+        String name = scanner.nextLine();
+        System.out.println("请输入密码");
+        String pass = scanner.nextLine();
+        login(name,pass);
+    }
+
+    public static void login(String name,String pass) throws UserName {
+        if(!name.equals(testClass.username)){
+            throw new UserName("用户名错误");
+        }
+        if(!pass.equals(testClass.password)){
+            throw new PassWord("密码错误");
+        }
+        System.out.println("登陆成功");
+    }
+
+    public static void main7(String[] args) {
+        String s1 = " FEAWIKJSFDksdfAFNKJ";
+        System.out.println(lower(s1));;
+    }
+
+    public static String lower(String string){
+        string = string.toLowerCase();
+        return string;
+    }
+
+    public static void main6(String[] args) {
+        String str = new String("hello worlds thankdaefef afew");
+        System.out.println(strmorenum(str));
+//        System.out.println(Character.isSpace(str.charAt(5)));
+    }
+
+    public static int strmorenum(String string){
+        int count = 0;
+        int count1 = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if(Character.isSpace(string.charAt(i))) {
+                count = 0;
+                continue;
+            }
+            count++;
+            if(count > count1)
+                count1 = count;
+        }
+        return count1;
+    }
+
+    public static void main5(String[] args) {
+        String s1 = "123456";
+        String string = new String(s1);
+        System.out.println(s1.substring(3));;
+    }
+
+    public static void main4(String[] args) {
         StringBuilder sb = new StringBuilder("flower");
         sb.append("boom");
         System.out.println(sb.toString());
@@ -35,6 +142,7 @@ public class testClass {
     }
 
 }
+
 class Base {
     private int x;
     private int y;
