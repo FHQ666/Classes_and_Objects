@@ -1,4 +1,4 @@
-// USB接口
+package Interface;// USB接口
 
 // 测试类：
 public class TestUSB {
