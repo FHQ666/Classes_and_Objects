@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Test {
+public class LeetCode {
 
     public static void main(String[] args) {
         int[] arr = {1,2,3};
@@ -18,8 +18,8 @@ public class Test {
     public static void main1(String[] args) {
         int[] A = {4,5,6};
         int[] B = {1,2,3};
-        Test test = new Test();
-        test.merge(A,3,B,3);
+        LeetCode leetCode = new LeetCode();
+        leetCode.merge(A,3,B,3);
         for (int i = 0; i < A.length; i++) {
             System.out.print(A[i]+" ");
         }
@@ -77,6 +77,48 @@ public class Test {
     }
 }
 
-
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int count = 0;
+        if(nums.length <= 1)
+            return nums.length;
+        for (int i = 0; i < nums.length-count; i++) {
+            if (i == nums.length - count - 1) {
+                break;
+            }
+            if(nums[i] == nums[i+1]){
+                for (int j = i; j < nums.length-count; j++) {
+                    if (j == nums.length - 1) {
+                        nums[j] = 0;
+                        continue;
+                    }
+                    nums[j] = nums[j + 1];
+                }
+                i--;
+                count++;
+            }
+        }
+        return nums.length-count;
+    }
+    //26. 删除有序数组中的重复项
+    public int removeElement(int[] nums, int val) {
+        int count = 0;
+        for (int i = 0; i < nums.length-count; i++) {
+            if(nums[i] == val){
+                for (int j = i; j < nums.length-count; j++) {
+                    if (j == nums.length - 1) {
+                        nums[j] = 0;
+                        continue;
+                    }
+                    nums[j] = nums[j + 1];
+                }
+                count++;
+                i--;
+            }
+        }
+        return nums.length-count;
+    }
+    //27. 移除元素
+}
 
 
