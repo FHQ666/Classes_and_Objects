@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class LeetCode {
@@ -119,6 +121,83 @@ class Solution {
         return nums.length-count;
     }
     //27. 移除元素
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> L1 = new ArrayList<>(numRows);
+        List<Integer> l1 = new ArrayList<>();
+        List<Integer> l = new ArrayList<>();
+        l1.add(1);
+        l.add(1);
+        L1.add(l);
+        if(numRows >= 2) {
+            l1.add(1);
+            L1.add(l1);
+        }
+        for (int i = 3; i <= numRows; i++) {
+            List<Integer> li = new ArrayList<>();
+            li.add(1);
+            li.add(1);
+            for (int j = 1; j < i-1; j++) {
+                li.add(j,l1.get(j-1) + l1.get(j));
+            }
+            L1.add(li);
+            l1 = li;
+        }
+        return L1;
+    }
+    //118. 杨辉三角
+    public String addStrings(String num1, String num2) {
+        int x = num1.length()-1;
+        int y = num2.length()-1;
+        int count = 0;
+        StringBuilder str = new StringBuilder();
+        while(x >= 0 || y >= 0) {
+            int tmp= 0;
+            if(x < 0)
+                tmp = Integer.valueOf(String.valueOf(num2.charAt(y)))+count;
+            else if (y < 0)
+                tmp = Integer.valueOf(String.valueOf(num1.charAt(x)))+count;
+            else
+                tmp = Integer.valueOf(String.valueOf(num1.charAt(x)))+Integer.valueOf(String.valueOf(num2.charAt(y)))+count;
+            if(tmp >= 10){
+                count = 1;
+                str.insert(0,String.valueOf(tmp%10));
+                x--;
+                y--;
+            }else {
+                count = 0;
+                str.insert(0,String.valueOf(tmp));
+                x--;
+                y--;
+            }
+        }
+//        if(num1.length()>num2.length()) {
+//            if (count == 1) {
+//                str.insert(0, String.valueOf(1 + Integer.valueOf(String.valueOf(num1.charAt(x)))));
+//            } else
+//                str.insert(0,String.valueOf(num1.charAt(x)));
+//            for (int i = x-1 ; i >= 0; i--) {
+//                str.insert(0,String.valueOf(num1.charAt(i)));
+//            }
+//        }
+//        if (num1.length()<num2.length()){
+//            if (count == 1) {
+//                str.insert(0, String.valueOf(1 + Integer.valueOf(String.valueOf(num2.charAt(y)))));
+//            } else
+//                str.insert(0,String.valueOf(num2.charAt(y)));
+//            for (int i = y-1 ; i >= 0; i--) {
+//                str.insert(0,String.valueOf(num2.charAt(i)));
+//            }
+//        }
+
+        if (count == 1)
+            str.insert(0,"1");
+
+//        StringBuilder stringBuilder = new StringBuilder(str);
+//        stringBuilder.reverse();
+        String s1 = str.toString();
+        return s1;
+    }
+    //415. 字符串相加
 }
 
 
